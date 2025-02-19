@@ -35,18 +35,25 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(raspiberrypi-adc raspiberrypi-adc.c )
+add_executable(raspiberrypi-adc
+        raspiberrypi-adc.c
+        ssd1306_i2c.c
+        )
 
 pico_set_program_name(raspiberrypi-adc "raspiberrypi-adc")
 pico_set_program_version(raspiberrypi-adc "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(raspiberrypi-adc 0)
-pico_enable_stdio_usb(raspiberrypi-adc 0)
+pico_enable_stdio_uart(raspiberrypi-adc 1)
+pico_enable_stdio_usb(raspiberrypi-adc 1)
 
 # Add the standard library to the build
 target_link_libraries(raspiberrypi-adc
-        pico_stdlib)
+        pico_stdlib
+        hardware_adc
+        hardware_pwm
+        hardware_clocks
+        )
 
 # Add the standard include files to the build
 target_include_directories(raspiberrypi-adc PRIVATE
@@ -54,9 +61,8 @@ target_include_directories(raspiberrypi-adc PRIVATE
 )
 
 # Add any user requested libraries
-target_link_libraries(raspiberrypi-adc 
-        
+target_link_libraries(raspiberrypi-adc
+        hardware_i2c
         )
 
 pico_add_extra_outputs(raspiberrypi-adc)
-
