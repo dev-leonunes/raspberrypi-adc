@@ -37,7 +37,7 @@ pico_sdk_init()
 
 add_executable(raspiberrypi-adc
         raspiberrypi-adc.c
-        ssd1306_i2c.c
+        inc/ssd1306.c
         )
 
 pico_set_program_name(raspiberrypi-adc "raspiberrypi-adc")
