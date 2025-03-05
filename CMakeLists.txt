@@ -28,27 +28,27 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(raspiberrypi-adc C CXX ASM)
+project(raspberrypi-adc C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(raspiberrypi-adc
-        raspiberrypi-adc.c
+add_executable(raspberrypi-adc
+        raspberrypi-adc.c
         inc/ssd1306.c
         )
 
-pico_set_program_name(raspiberrypi-adc "raspiberrypi-adc")
-pico_set_program_version(raspiberrypi-adc "0.1")
+pico_set_program_name(raspberrypi-adc "raspberrypi-adc")
+pico_set_program_version(raspberrypi-adc "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(raspiberrypi-adc 1)
-pico_enable_stdio_usb(raspiberrypi-adc 1)
+pico_enable_stdio_uart(raspberrypi-adc 1)
+pico_enable_stdio_usb(raspberrypi-adc 1)
 
 # Add the standard library to the build
-target_link_libraries(raspiberrypi-adc
+target_link_libraries(raspberrypi-adc
         pico_stdlib
         hardware_adc
         hardware_pwm
@@ -56,13 +56,13 @@ target_link_libraries(raspiberrypi-adc
         )
 
 # Add the standard include files to the build
-target_include_directories(raspiberrypi-adc PRIVATE
+target_include_directories(raspberrypi-adc PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(raspiberrypi-adc
+target_link_libraries(raspberrypi-adc
         hardware_i2c
         )
 
-pico_add_extra_outputs(raspiberrypi-adc)
+pico_add_extra_outputs(raspberrypi-adc)
